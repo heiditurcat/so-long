@@ -6,7 +6,7 @@
 /*   By: hturcat <hturcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:27:41 by hturcat           #+#    #+#             */
-/*   Updated: 2023/09/29 18:48:59 by hturcat          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:09:09 by hturcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,24 @@ void	**ft_free(t_d *d, char **strstr)
 int	ft_destroy(t_d *d)
 {
 	ft_free(d, d->map);
-	mlx_destroy_image(d->p, d->p_right);
-	mlx_destroy_image(d->p, d->p_left);
-	mlx_destroy_image(d->p, d->p_up);
-	mlx_destroy_image(d->p, d->p_down);
-	mlx_destroy_image(d->p, d->floor);
-	mlx_destroy_image(d->p, d->exit);
-	mlx_destroy_image(d->p, d->wa);
-	mlx_destroy_image(d->p, d->collect);
-	mlx_destroy_image(d->p, d->enemy);
+	if (d->p_right != NULL)
+		mlx_destroy_image(d->p, d->p_right);
+	if (d->p_left != NULL)
+		mlx_destroy_image(d->p, d->p_left);
+	if (d->p_up != NULL)
+		mlx_destroy_image(d->p, d->p_up);
+	if (d->p_down != NULL)
+		mlx_destroy_image(d->p, d->p_down);
+	if (d->floor != NULL)
+		mlx_destroy_image(d->p, d->floor);
+	if (d->exit != NULL)
+		mlx_destroy_image(d->p, d->exit);
+	if (d->wa != NULL)
+		mlx_destroy_image(d->p, d->wa);
+	if (d->collect != NULL)
+		mlx_destroy_image(d->p, d->collect);
+	if (d->enemy != NULL)
+		mlx_destroy_image(d->p, d->enemy);
 	mlx_destroy_window(d->p, d->w);
 	mlx_destroy_display(d->p);
 	free(d->p);

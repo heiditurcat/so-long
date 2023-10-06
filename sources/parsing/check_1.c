@@ -6,7 +6,7 @@
 /*   By: hturcat <hturcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:41:48 by hturcat           #+#    #+#             */
-/*   Updated: 2023/10/02 14:01:12 by hturcat          ###   ########.fr       */
+/*   Updated: 2023/10/03 13:51:03 by hturcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,22 @@ int	ft_check_no_wall(t_d *d)
 	return (SUCCESS);
 }
 
+int	check_rectangle(t_d *d)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (d->map[y] && y < d->nbline)
+	{
+		if (ft_strlen(d->map[y]) != d->nbcol)
+			return (ERROR_NO_WALL);
+		y++;
+	}
+	return (SUCCESS);
+}
+
 ///////good//////////////////////////////////////////////////////////////////
 
 int	ft_check(t_d *d)
@@ -82,6 +98,8 @@ int	ft_check(t_d *d)
 	else if (ft_check_nb_player_exit(d) == (ERROR_TOO_MANY))
 		return (ft_error(d, ERROR_TOO_MANY));
 	else if (ft_check_no_wall(d) == ERROR_NO_WALL)
+		return (ft_error(d, ERROR_NO_WALL));
+	else if (check_rectangle(d) == ERROR_NO_WALL)
 		return (ft_error(d, ERROR_NO_WALL));
 	result_collec = ft_check_collectible(d);
 	if (result_collec == (PARSING_ERROR))

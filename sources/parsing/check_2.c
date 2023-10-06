@@ -6,7 +6,7 @@
 /*   By: hturcat <hturcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:50:10 by hturcat           #+#    #+#             */
-/*   Updated: 2023/10/02 20:23:25 by hturcat          ###   ########.fr       */
+/*   Updated: 2023/10/03 12:51:57 by hturcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,17 @@ int	ft_check_name(char *name)
 	int	len;
 
 	len = ft_strlen(name);
-	if (name[len - 4] == '.')
+	if (len > 4 && name[len - 5] != '/')
 	{
-		if (name[len - 3] == 'b')
+		if (name[len - 4] == '.')
 		{
-			if (name[len - 2] == 'e')
+			if (name[len - 3] == 'b')
 			{
-				if (name[len - 1] == 'r')
-					return (SUCCESS);
+				if (name[len - 2] == 'e')
+				{
+					if (name[len - 1] == 'r')
+						return (SUCCESS);
+				}
 			}
 		}
 	}

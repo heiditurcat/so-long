@@ -6,7 +6,7 @@
 /*   By: hturcat <hturcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:18:06 by hturcat           #+#    #+#             */
-/*   Updated: 2023/10/02 20:21:30 by hturcat          ###   ########.fr       */
+/*   Updated: 2023/10/02 22:52:03 by hturcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_map_creation(t_d *d, char **argv)
 
 int	ft_map_creation_suite(t_d *d, char *map_line, char *line, int fd)
 {
-	if (ft_check_empty(map_line) == ERROR_NEWLINE)
+	if (map_line[0] == '\n' || ft_check_empty(map_line) == ERROR_NEWLINE)
 	{
 		free(map_line);
 		free(line);

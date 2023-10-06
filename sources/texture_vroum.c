@@ -6,34 +6,42 @@
 /*   By: hturcat <hturcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 11:37:17 by hturcat           #+#    #+#             */
-/*   Updated: 2023/09/29 17:46:09 by hturcat          ###   ########.fr       */
+/*   Updated: 2023/10/03 13:58:52 by hturcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init_img(t_d *d)
+int	check_validity(t_d *d)
 {
-	int	width;
+	if (d->p_up == NULL)
+		return (0);
+	else if (d->p_down == NULL)
+		return (0);
+	else if (d->p_right == NULL)
+		return (0);
+	else if (d->p_left == NULL)
+		return (0);
+	else if (d->exit == NULL)
+		return (0);
+	else if (d->wa == NULL)
+		return (0);
+	else if (d->collect == NULL)
+		return (0);
+	else if (d->floor == NULL)
+		return (0);
+	else if (d->enemy == NULL)
+		return (0);
+	return (1);
+}
 
-	d->p_up = mlx_xpm_file_to_image(d->p, \
-	"./assets/player_up.xpm", &width, &width);
-	d->p_down = mlx_xpm_file_to_image(d->p, \
-	"./assets/player_down.xpm", &width, &width);
-	d->p_right = mlx_xpm_file_to_image(d->p, \
-	"./assets/player_right.xpm", &width, &width);
-	d->p_left = mlx_xpm_file_to_image(d->p, \
-	"./assets/player_left.xpm", &width, &width);
-	d->exit = mlx_xpm_file_to_image(d->p, \
-	"./assets/exit.xpm", &width, &width);
-	d->wa = mlx_xpm_file_to_image(d->p, \
-	"./assets/wall.xpm", &width, &width);
-	d->collect = mlx_xpm_file_to_image(d->p, \
-	"./assets/collectible.xpm", &width, &width);
-	d->floor = mlx_xpm_file_to_image(d->p, \
-	"./assets/floor.xpm", &width, &width);
-	d->enemy = mlx_xpm_file_to_image(d->p, \
-	"./assets/enemy.xpm", &width, &width);
+void	destroy_ptr(t_d *d)
+{
+	if (check_validity(d) == 0)
+	{
+		ft_putstr_fd("Error:\nFile not found\n", 2);
+		ft_destroy(d);
+	}
 }
 
 void	map_texture_vroum(t_d *d)
@@ -42,7 +50,7 @@ void	map_texture_vroum(t_d *d)
 	int	i;
 
 	j = -1;
-	init_img(d);
+	destroy_ptr(d);
 	while (++j < d->nbline)
 	{
 		i = -1;
