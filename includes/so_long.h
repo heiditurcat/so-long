@@ -6,7 +6,7 @@
 /*   By: hturcat <hturcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:46:36 by hturcat           #+#    #+#             */
-/*   Updated: 2023/10/02 20:24:02 by hturcat          ###   ########.fr       */
+/*   Updated: 2023/10/03 14:51:08 by hturcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ typedef struct s_d{
 
 // main.c
 int		main(int argc, char **argv);
+int		main_suite(t_d d);
 int		ft_error(t_d *d, int error_code);
+void	init_img(t_d *d);
 void	ft_initialize_d(t_d *d);
 
 // map_creation.c
@@ -104,10 +106,8 @@ int		ft_check_empty(char *map_line);
 
 // texture_vroum.c
 void	map_texture_vroum(t_d *d);
-
-// backtracking.c
-int		ft_backtracking(t_d *d, int x, int y);
-int		ft_recursive(t_d *d, int y, int x);
+void	destroy_ptr(t_d *d);
+int		check_validity(t_d *d);
 
 // position.c
 void	ft_pos(t_d *d);
@@ -115,19 +115,27 @@ void	ft_pos(t_d *d);
 // moving.c
 int		deal_key(int keysym, t_d *d);
 int		ft_move(t_d *d, int j, int i);
+void	ft_move_suite(t_d *d, int j, int i);
 
 // end_game.c
 int		ft_destroy(t_d *d);
 int		ft_destroy_not_all(t_d *d);
 void	**ft_free(t_d *d, char **strstr);
 
-///////// PARSING /////////
+///////// PARSING //////////
+
+// backtracking.c
+int		ft_backtracking(t_d *d, int x, int y);
+int		ft_recursive(t_d *d, int y, int x);
+int		ft_rec_cond(t_d *d, int y, int x);
 
 // check_1.c
 int		ft_check(t_d *d);
+int		check_rectangle(t_d *d);
 int		ft_check_no_wall(t_d *d);
 int		ft_check_no_intrude(t_d *d);
 int		ft_isascii(int c);
+
 //  check_2.c
 int		ft_check_name(char *name);
 int		ft_check_nb_player_exit(t_d *d);
